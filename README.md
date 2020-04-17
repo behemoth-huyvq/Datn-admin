@@ -1,24 +1,15 @@
-# README
+# Install Gem
+```
+bundle install
+```
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Install gem ruby-oci8
+```
+https://stackoverflow.com/questions/11894194/how-to-install-ruby-oci8
+https://www.rubydoc.info/gems/ruby-oci8/file/docs/install-on-osx.md
+```
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Kickoff
+```bash
+bundle exec foreman start
+```
