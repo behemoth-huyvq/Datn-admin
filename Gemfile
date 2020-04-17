@@ -13,6 +13,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'activerecord-oracle_enhanced-adapter', '~> 6.0.0'
 gem 'ruby-oci8'
 gem 'devise'
+gem 'active_hash'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
