@@ -4,14 +4,37 @@
 // that code so it'll be compiled.
 
 require("@rails/ujs").start()
-require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+require("jquery")
 
+import 'bootstrap/dist/js/bootstrap';
+import 'bootstrap'
 
-// Uncomment to copy all static images under ../images to the output folder and reference
-// them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
-// or the `imagePath` JavaScript helper below.
-//
-// const images = require.context('../images', true)
-// const imagePath = (name) => images(name, true)
+import Axios from './axios';
+Vue.prototype.$axios = Axios;
+
+import Toasted from 'vue-toasted';
+Vue.prototype.$toasted = Toasted;
+
+import Vue from 'vue/dist/vue.esm';
+import '../styles/application.scss'
+
+// import Loading from './components/share/Loading'
+
+document.addEventListener('DOMContentLoaded', () => {
+  const app = document.getElementById("app");
+
+  const vue = new Vue({
+    el: "#app",
+    components: {
+      Loading: Loading
+    }
+  });
+  
+  const toastOption = { 
+    duration: 3000,
+    theme: "bubble"
+  };
+  Vue.use(Toasted, toastOption);
+});

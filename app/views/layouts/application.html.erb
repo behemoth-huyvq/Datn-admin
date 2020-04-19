@@ -1,15 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>DatnAdmin</title>
+    <title>Datn-Admin</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application'%>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="wrapper" id="app">
+      <% if user_signed_in? %>
+        <%= render "layouts/shared/sidebar" %>
+        <div class="main-panel">
+          <%= render "layouts/shared/navbar" %>
+
+          <div class="content">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-12">
+                  <%= render "layouts/shared/alert" %>
+                  <%= yield %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <%#= render "layouts/shared/footer" %>
+        </div>
+      <% else %>
+        <%= render "layouts/shared/alert" %>
+        <%= yield %>
+      <% end %>
+      <%= loading %>
+    </div>
+  </body>
   </body>
 </html>
