@@ -15,6 +15,8 @@ gem 'ruby-oci8'
 gem 'devise'
 gem 'active_hash'
 gem 'pagy'
+gem 'active_model_serializers'
+gem 'ransack'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

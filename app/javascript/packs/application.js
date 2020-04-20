@@ -17,6 +17,9 @@ Vue.prototype.$axios = Axios;
 import Toasted from 'vue-toasted';
 Vue.prototype.$toasted = Toasted;
 
+import Swal from 'sweetalert2'
+Vue.prototype.$swal = Swal;
+
 import Vue from 'vue/dist/vue.esm';
 import '../styles/application.scss'
 
@@ -28,7 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const vue = new Vue({
     el: "#app",
     components: {
-      Loading: Loading
+      Loading: Loading,
+      RoleIndex: () => import('./components/roles/Index.vue'),
+      RolesNewPage: () => import('./components/roles/new'),
+      RolesEditPage: () => import('./components/roles/edit'),
     }
   });
   
