@@ -1,6 +1,7 @@
 class RolesController < BaseController
   include Pagy::Backend
   before_action :fetch_article, only: %i[edit update destroy]
+  before_action :authorization
 
   def index
     @q = Role.order(id: :desc).ransack(params[:q])
@@ -53,6 +54,10 @@ class RolesController < BaseController
   end
 
   private
+
+  def authorization
+    authorize Role
+  end
 
   def fetch_article
     @role = Role.find(params[:id])

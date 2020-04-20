@@ -9,4 +9,25 @@ class User < ApplicationRecord
   has_many :user_roles
   has_many :roles, through: :user_roles
   has_many :permissions, through: :roles
+
+  def authorizations
+    permissions.map(&:authorization).map do |authorization|
+      OpenStruct.new(
+        {
+          target: authorization.target,
+          action: authorization.action,
+        },
+      )
+    end
+  end
+
+  def authorized_for(target, action)
+    authorizations.detect do |authorization|
+      authorization.target == :all ||
+        (
+          authorization.target == target &&
+          authorization.action == action
+        )
+    end
+  end
 end
