@@ -20,7 +20,7 @@ Vue.prototype.$toasted = Toasted;
 import Vue from 'vue/dist/vue.esm';
 import '../styles/application.scss'
 
-// import Loading from './components/share/Loading'
+import Loading from './components/share/Loading'
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = document.getElementById("app");
