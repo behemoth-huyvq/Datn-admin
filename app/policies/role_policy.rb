@@ -12,11 +12,11 @@ class RolePolicy < ApplicationPolicy
   end
 
   def update?
-    user.authorized_for(:all, :update)
+    new?
   end
 
   def create?
-    user.authorized_for(:all, :create)
+    new?
   end
 
   def destroy?

@@ -72,7 +72,7 @@ export default {
       };
       
       try {
-        this.$root.$refs.Loading.show();
+        this.$root.$refs.loading.show();
         const result = await RolesApi.getRolesList(params);
         this.rolesList = result.data.roles;
         this.meta = Object.assign({}, this.meta, result.data.meta);
@@ -80,7 +80,7 @@ export default {
       } catch (e) {
         console.log(e.message);
       } finally {
-        this.$root.$refs.Loading.hide();
+        this.$root.$refs.loading.hide();
       }
     },
     onChangePage: function(page) {

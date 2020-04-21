@@ -12,7 +12,7 @@
               <input type="text" class="form-control" id="name" v-model="q.name_cont" />
             </div>
             <div class="col-md-4">
-              <label for="name">Theo miêu tả quản trị viên</label>
+              <label for="name">Theo email quản trị viên</label>
               <input type="text" class="form-control" id="name" v-model="q.email_cont" />
             </div>
             <div class="col-md-4">

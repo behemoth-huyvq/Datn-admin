@@ -68,6 +68,7 @@ GEM
       zeitwerk (~> 2.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    awesome_print (1.8.0)
     bcrypt (3.1.13)
     bindex (0.8.1)
     bootsnap (1.4.6)
@@ -240,6 +241,7 @@ DEPENDENCIES
   active_hash
   active_model_serializers
   activerecord-oracle_enhanced-adapter (~> 6.0.0)
+  awesome_print
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
