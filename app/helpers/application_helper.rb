@@ -12,10 +12,10 @@ module ApplicationHelper
   end
 
   def loading
-    inner_options = {
-      ref: "Loading",
+    options = {
+      ref: "loading",
     }
 
-    content_tag("loading", nil, inner_options, false)
+    content_tag("loading", nil, options, false)
   end
 end

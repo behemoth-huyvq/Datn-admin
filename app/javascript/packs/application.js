@@ -14,6 +14,8 @@ import 'bootstrap'
 import Axios from './axios';
 Vue.prototype.$axios = Axios;
 
+import ApiService from '../api/apiService';
+
 import Toasted from 'vue-toasted';
 Vue.prototype.$toasted = Toasted;
 
@@ -32,12 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
     el: "#app",
     components: {
       Loading: Loading,
-      RolesIndex: () => import('./components/roles/Index.vue'),
+      RolesIndex: () => import('./components/roles/Index'),
       RolesNewPage: () => import('./components/roles/new'),
       RolesEditPage: () => import('./components/roles/edit'),
-      UsersIndex: () => import('./components/users/Index.vue'),
+      UsersIndex: () => import('./components/users/Index'),
       UsersNewPage: () => import('./components/users/new'),
       UsersEditPage: () => import('./components/users/edit'),
+      PermissionsIndex: () => import('./components/permissions/Index'),
     }
   });
   
@@ -46,4 +49,5 @@ document.addEventListener('DOMContentLoaded', () => {
     theme: "bubble"
   };
   Vue.use(Toasted, toastOption);
+  Vue.prototype.apiService = new ApiService(vue);
 });

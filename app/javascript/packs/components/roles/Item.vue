@@ -52,7 +52,7 @@ export default {
         .then(async function(result) {
           if (result.value) {
             try {
-              self.$root.$refs.Loading.show();
+              self.$root.$refs.loading.show();
               const resultDestroy = await RolesApi.destroyRole(
                 self.role.id
               );
@@ -61,7 +61,7 @@ export default {
             } catch (e) {
               self.$toasted.error(resultDestroy.data.message);
             } finally {
-              self.$root.$refs.Loading.hide();
+              self.$root.$refs.loading.hide();
             }
           }
         });

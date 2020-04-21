@@ -5,4 +5,9 @@ Rails.application.routes.draw do
 
   resources :roles, except: :show
   resources :users, except: :show
+  resources :permissions do
+    collection do
+      post :remove
+    end
+  end
 end
