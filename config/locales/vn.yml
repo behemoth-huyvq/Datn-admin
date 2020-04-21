@@ -1,0 +1,10 @@
+vn:
+  activerecord:
+    attributes:
+      user:
+        name: Ten
+        email: Email
+    errors:
+      attributes:
+        user:
+          name: Ten

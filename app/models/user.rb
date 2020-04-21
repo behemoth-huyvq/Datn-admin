@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :roles, through: :user_roles
   has_many :permissions, through: :roles
 
+  accepts_nested_attributes_for :user_roles, allow_destroy: true
+
   def authorizations
     permissions.map(&:authorization).map do |authorization|
       OpenStruct.new(

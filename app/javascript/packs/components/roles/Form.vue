@@ -1,30 +1,28 @@
 <template>
   <div>
     <div class="form-group row">
-      <label for="kind" class="col-sm-2 col-form-label">Tên quyền</label>
+      <label for="kind" class="col-sm-2 col-form-label">Tên chức vụ</label>
       <div class="col-sm-10">
         <input
           type="text"
           v-model="creatingRole.name"
           class="form-control"
         />
-        <span v-for="(error, key) in errors.name" :key="key" class="error">{{
-          error
-        }}</span>
+        <div class="validation" v-if="errors.name">
+          <p v-for="(error, key) in errors.name" :key="key">{{ error }}</p>
+        </div>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="kind" class="col-sm-2 col-form-label">Miêu tả quyền</label>
+      <label for="kind" class="col-sm-2 col-form-label">Miêu tả chức vụ</label>
       <div class="col-sm-10">
-        <input
-          type="text"
-          v-model="creatingRole.description"
-          class="form-control"
-        />
-        <span v-for="(error, key) in errors.description" :key="key" class="error">{{
-          error
-        }}</span>
+        <textarea rows="4" cols="50"
+                  v-model="creatingRole.description"
+                  class="form-control"></textarea>
+        <div class="validation" v-if="errors.description">
+          <p v-for="(error, key) in errors.description" :key="key">{{ error }}</p>
+        </div>
       </div>
     </div>
 
@@ -67,7 +65,7 @@ export default {
 
         await this.$swal.fire({
           icon: "success",
-          title: "Quyền của bạn đã được lưu.",
+          title: "Chức vụ đã được lưu.",
           showConfirmButton: false,
           timer: 1500
         });

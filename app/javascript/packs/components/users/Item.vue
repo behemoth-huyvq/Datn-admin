@@ -1,8 +1,14 @@
 <template>
   <tr>
-    <td>{{ role.id }}</td>
-    <td>{{ role.name }}</td>
-    <td>{{ role.description }}</td>
+    <td>{{ user.id }}</td>
+    <td>{{ user.name }}</td>
+    <td>{{ user.email }}</td>
+    <td>
+      <span v-for="ur in user.user_roles" :key="ur.id">
+        {{ ur.role.name }}
+        <br />
+      </span>
+    </td>
     <td>
       <div class="dropdown">
         <button
@@ -14,7 +20,7 @@
           aria-expanded="false"
         >Thao tác</button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a href class="dropdown-item" @click.prevent="onEditItem(role.id)">Chỉnh sửa</a>
+          <a href class="dropdown-item" @click.prevent="onEditItem(user.id)">Chỉnh sửa</a>
           <a href class="dropdown-item" @click.prevent="onDestroyItem()">Xoá</a>
         </div>
       </div>
@@ -22,7 +28,7 @@
   </tr>
 </template>
 <script>
-import RolesApi from "../../../api/roles";
+import UsersApi from "../../../api/users";
 
 export default {
   data: function() {
@@ -31,7 +37,7 @@ export default {
     };
   },
   props: {
-    role: {
+    user: {
       type: Object,
       required: true
     }
@@ -53,11 +59,11 @@ export default {
           if (result.value) {
             try {
               self.$root.$refs.Loading.show();
-              const resultDestroy = await RolesApi.destroyRole(
-                self.role.id
+              const resultDestroy = await UsersApi.destroyUser(
+                self.user.id
               );
               self.$toasted.success(resultDestroy.data.message);
-              self.$emit("delete-role");
+              self.$emit("delete-user");
             } catch (e) {
               self.$toasted.error(resultDestroy.data.message);
             } finally {
@@ -66,8 +72,8 @@ export default {
           }
         });
     },
-    onEditItem: function(roleId) {
-      window.location.replace(`/roles/${roleId}/edit`);
+    onEditItem: function(userId) {
+      window.location.replace(`/users/${userId}/edit`);
     }
   }
 };

@@ -1,30 +1,31 @@
 <template>
   <div>
-    <Search v-on:search-roles="onSearch" />
+    <Search v-on:search-users="onSearch" :role-options="roleOptions"/>
     <div class="card">
       <div class="card-header card-header-success">
-        <h4 class="card-title">Danh sách chức vụ</h4>
+        <h4 class="card-title">Danh sách quản trị viên</h4>
         <p class="card-category"></p>
       </div>
       <div class="card-body">
-        <div v-if="rolesList.length > 0">
+        <div v-if="usersList.length > 0">
           <Paging :meta="meta" v-on:change-page="onChangePage" />
           <div class="table-responsive">
             <table class="table">
               <thead class="text-primary">
                 <tr>
                   <th width="10%">Id</th>
-                  <th width="25%">Tên chức vụ</th>
-                  <th width="55%">Miêu tả chức vụ</th>
+                  <th width="25%">Tên quản trị viên</th>
+                  <th width="25%">Email</th>
+                  <th width="25%">Chức vụ</th>
                   <th width="10%">Hành động</th>
                 </tr>
               </thead>
               <tbody>
                 <Item
-                  v-for="role in rolesList"
-                  :key="role.id"
-                  :role="role"
-                  v-on:delete-role="onDelete"
+                  v-for="user in usersList"
+                  :key="user.id"
+                  :user="user"
+                  v-on:delete-user="onDelete"
                 />
               </tbody>
             </table>
@@ -42,7 +43,7 @@
 import Item from "./Item";
 import Paging from "../share/Paging";
 import Search from "./Search";
-import RolesApi from "../../../api/roles";
+import UsersApi from "../../../api/users";
 
 export default {
   components: {
@@ -52,7 +53,7 @@ export default {
   },
   data: function() {
     return {
-      rolesList: [],
+      usersList: [],
       page: 1,
       perPage: 50,
       meta: {},
@@ -60,11 +61,17 @@ export default {
       q: {}
     };
   },
+  props: {
+    roleOptions: {
+      type: Array,
+      reuired: true
+    }
+  },
   created: function() {
-    this.fetchRolesList();
+    this.fetchUsersList();
   },
   methods: {
-    fetchRolesList: async function() {
+    fetchUsersList: async function() {
       const params = {
         q: this.q,
         page: this.page,
@@ -73,8 +80,8 @@ export default {
       
       try {
         this.$root.$refs.Loading.show();
-        const result = await RolesApi.getRolesList(params);
-        this.rolesList = result.data.roles;
+        const result = await UsersApi.getUsersList(params);
+        this.usersList = result.data.users;
         this.meta = Object.assign({}, this.meta, result.data.meta);
         this.page = this.meta.page;
       } catch (e) {
@@ -85,14 +92,14 @@ export default {
     },
     onChangePage: function(page) {
       this.page = page;
-      this.fetchRolesList();
+      this.fetchUsersList();
     },
     onSearch: async function(params) {
       this.q = params;
-      this.fetchRolesList();
+      this.fetchUsersList();
     },
     onDelete: function() {
-      this.fetchRolesList();
+      this.fetchUsersList();
     }
   }
 };
