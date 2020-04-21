@@ -28,29 +28,33 @@ class RolesController < BaseController
   end
 
   def create
-    role = Role.new(role_params)
+    form = RoleValidator.new(OpenStruct.new(role_params))
 
-    if role.save
-      render json: role
+    if form.valid?
+      role = Role.create!(role_params)
+      render json: role, status: :ok
     else
-      render json: role.errors.to_hash(true).to_json, status: :unprocessable_entity
+      render json: form.error_messages, status: :unprocessable_entity
     end
   end
 
   def update
-    if @role.update(role_params)
-      render json: @role
-    else
-      render json: @role.errors.to_hash(true).to_json, status: :unprocessable_entity
-    end
+      form = RoleValidator.new(OpenStruct.new(role_params))
+
+      if form.valid?
+        @role.update(role_params)
+        render json: @role, status: :ok
+      else
+        render json: form.error_messages, status: :unprocessable_entity
+      end
   end
 
   def destroy
     @role.destroy
-    render json: { message: "Quyền đã bị xóa." }, status: :ok
+    render json: { message: "Chức vụ đã bị xóa." }, status: :ok
   rescue StandardError => e
     Rails.logger.error("destroy failed; #{e.message}")
-    render json: { message: "Xóa bài thất bại. Vui lòng thử lại." }, status: :internal_server_error
+    render json: { message: "Xóa chức vụ thất bại. Vui lòng thử lại." }, status: :internal_server_error
   end
 
   private
@@ -64,7 +68,7 @@ class RolesController < BaseController
   end
 
   def set_title
-    @title = "Quản lý quyền"
+    @title = "Quản lý chức vụ"
   end
 
   def role_params

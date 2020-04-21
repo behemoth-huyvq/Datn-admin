@@ -22,8 +22,17 @@
                   <%= active_class('roles', 'edit') %>
                   <%= active_class('roles', 'new') %>">
         <a class="nav-link" href="/roles">
-          <i class="fas fa-user"></i>
-          <p>Quản lý quyền</p>
+          <i class="fas fa-flag"></i>
+          <p>Quản lý chức vụ</p>
+        </a>
+      </li>
+      <li class="nav-item
+                  <%= active_class('users', 'index') %>
+                  <%= active_class('users', 'edit') %>
+                  <%= active_class('users', 'new') %>">
+        <a class="nav-link" href="/users">
+          <i class="fas fa-users-cog"></i>
+          <p>Quản lý quản trị viên</p>
         </a>
       </li>
       <!-- <li class="nav-item  <%#= active_class('users') %>">

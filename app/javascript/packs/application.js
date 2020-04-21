@@ -32,9 +32,12 @@ document.addEventListener('DOMContentLoaded', () => {
     el: "#app",
     components: {
       Loading: Loading,
-      RoleIndex: () => import('./components/roles/Index.vue'),
+      RolesIndex: () => import('./components/roles/Index.vue'),
       RolesNewPage: () => import('./components/roles/new'),
       RolesEditPage: () => import('./components/roles/edit'),
+      UsersIndex: () => import('./components/users/Index.vue'),
+      UsersNewPage: () => import('./components/users/new'),
+      UsersEditPage: () => import('./components/users/edit'),
     }
   });
   

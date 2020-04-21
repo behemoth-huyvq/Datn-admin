@@ -1,0 +1,9 @@
+vn:
+  errors:
+    messages:
+      was_used: đã tồn tại
+      blank: không được để trống
+      invalid: giá trị không hợp lệ
+      too_short: phải nhiều hơn %{count} ký tự
+      duplicate: đã bị trùng
+      does_not_exist: không tồn tại

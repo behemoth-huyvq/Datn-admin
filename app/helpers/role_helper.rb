@@ -1,6 +1,6 @@
 module RoleHelper
   def role_index
-    content_tag("role-index", nil, nil, false)
+    content_tag("roles-index", nil, nil, false)
   end
 
   def roles_new_page(role)
