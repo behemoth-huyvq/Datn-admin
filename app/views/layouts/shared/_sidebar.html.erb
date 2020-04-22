@@ -59,6 +59,15 @@
           <p>Quản lý sinh viên</p>
         </a>
       </li>
+      <li class="nav-item
+                  <%= active_class('courses', 'index') %>
+                  <%= active_class('courses', 'edit') %>
+                  <%= active_class('courses', 'new') %>">
+        <a class="nav-link" href="/courses">
+          <i class="fas fa-book-open"></i>
+          <p>Quản lý học phần</p>
+        </a>
+      </li>
       <!-- <li class="nav-item  <%#= active_class('users') %>">
         <a class="nav-link" href="/users">
           <i class="material-icons">person</i>

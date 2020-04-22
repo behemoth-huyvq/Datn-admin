@@ -59,7 +59,7 @@ export default {
               self.$toasted.success(resultDestroy.data.message);
               self.$emit("delete-role");
             } catch (e) {
-              self.$toasted.error(resultDestroy.data.message);
+              self.$toasted.error(e.response.data.message);
             } finally {
               self.$root.$refs.loading.hide();
             }
