@@ -1,0 +1,12 @@
+vn:
+  devise:
+    failure:
+      already_authenticated: "Bạn đã đăng nhập."
+      invalid: "Không hợp lệ %{authentication_keys} hoặc mật khẩu."
+      not_found_in_database: "Không hợp lệ %{authentication_keys} hoặc mật khẩu."
+      timeout: "Phiên của bạn đã hết hạn. Vui lòng đăng nhập lại để tiếp tục."
+      unauthenticated: "Bạn cần đăng nhập trước khi tiếp tục."
+    sessions:
+      signed_in: "Đã đăng nhập thành công."
+      signed_out: "Đăng xuất thành công."
+      already_signed_out: "Đăng xuất thành công."
