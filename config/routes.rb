@@ -10,4 +10,5 @@ Rails.application.routes.draw do
       post :remove
     end
   end
+  resources :subjects, except: :show
 end

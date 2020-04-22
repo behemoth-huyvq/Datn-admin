@@ -41,6 +41,9 @@ document.addEventListener('DOMContentLoaded', () => {
       UsersNewPage: () => import('./components/users/new'),
       UsersEditPage: () => import('./components/users/edit'),
       PermissionsIndex: () => import('./components/permissions/Index'),
+      SubjectsIndex: () => import('./components/subjects/Index'),
+      SubjectsNewPage: () => import('./components/subjects/new'),
+      SubjectsEditPage: () => import('./components/subjects/edit'),
     }
   });
   
