@@ -18,6 +18,7 @@ gem 'pagy'
 gem 'active_model_serializers'
 gem 'ransack'
 gem 'pundit'
+gem 'enum_help'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

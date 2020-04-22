@@ -1,0 +1,8 @@
+vn:
+  enums:
+    course:
+      status:
+        adjusted: Điều chỉnh ĐK
+        cancel: Huỷ lớp
+        doing: Đang xếp TKB
+        end: Kết thúc ĐK

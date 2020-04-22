@@ -47,6 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
       StudentsIndex: () => import('./components/students/Index'),
       StudentsNewPage: () => import('./components/students/new'),
       StudentsEditPage: () => import('./components/students/edit'),
+      CoursesIndex: () => import('./components/courses/Index'),
+      CoursesNewPage: () => import('./components/courses/new'),
+      CoursesEditPage: () => import('./components/courses/edit'),
     }
   });
   
