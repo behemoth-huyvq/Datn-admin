@@ -50,6 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
       CoursesIndex: () => import('./components/courses/Index'),
       CoursesNewPage: () => import('./components/courses/new'),
       CoursesEditPage: () => import('./components/courses/edit'),
+      SchedulesIndex: () => import('./components/schedules/Index'),
+      SchedulesNewPage: () => import('./components/schedules/new'),
+      SchedulesEditPage: () => import('./components/schedules/edit'),
     }
   });
   

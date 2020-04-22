@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   resources :subjects, except: :show
   resources :students, except: :show
   resources :courses, except: :show
+  resources :schedules, except: :show
 end
