@@ -1,6 +1,6 @@
 class RolesController < BaseController
   include Pagy::Backend
-  before_action :fetch_article, only: %i[edit update destroy]
+  before_action :fetch_role, only: %i[edit update destroy]
   before_action :authorization
 
   def index
@@ -63,7 +63,7 @@ class RolesController < BaseController
     authorize Role
   end
 
-  def fetch_article
+  def fetch_role
     @role = Role.find(params[:id])
   end
 

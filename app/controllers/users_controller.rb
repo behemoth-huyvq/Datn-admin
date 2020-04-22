@@ -1,6 +1,6 @@
 class UsersController < BaseController
   include Pagy::Backend
-  before_action :fetch, only: %i[edit update destroy]
+  before_action :fetch_user, only: %i[edit update destroy]
   before_action :authorization
 
   def index
@@ -69,7 +69,7 @@ class UsersController < BaseController
 
   private
 
-  def fetch
+  def fetch_user
     @user = User.find(params[:id])
   end
 
