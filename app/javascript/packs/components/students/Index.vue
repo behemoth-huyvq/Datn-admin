@@ -1,38 +1,35 @@
 <template>
   <div>
-    <Search v-on:search-subjects="onSearch"
-            :subject-type-option="subjectTypeOption"
-            :department-option="departmentOption"/>
+    <Search v-on:search-students="onSearch"
+            :class-name-option="classNameOption"
+            :program-option="programOption"/>
     <div class="card">
       <div class="card-header card-header-success">
-        <h4 class="card-title">Danh sách môn hoc</h4>
+        <h4 class="card-title">Danh sách sinh viên</h4>
         <p class="card-category"></p>
       </div>
       <div class="card-body">
-        <div v-if="subjectsList.length > 0">
+        <div v-if="studentsList.length > 0">
           <Paging :meta="meta" v-on:change-page="onChangePage" />
           <div class="table-responsive">
             <table class="table">
               <thead class="text-primary">
                 <tr>
                   <th width="5%">Id</th>
-                  <th width="8%">Mã môn học</th>
-                  <th width="15%">Tên môn học</th>
-                  <th width="10%">Loại môn học</th>
-                  <th width="10%">Hệ số môn học</th>
-                  <th width="15%">Miêu tả môn học</th>
-                  <th width="10%">Mã khoa</th>
-                  <th width="7%">Trạng thái</th>
-                  <th width="7%">redit</th>
+                  <th width="10%">Mã sinh viên</th>
+                  <th width="15%">Tên sinh viên</th>
+                  <th width="10%">Ngày sinh</th>
+                  <th width="15%">Tên lớp</th>
+                  <th width="15%">Tên chương trình học</th>
                   <th width="10%">Hành động</th>
                 </tr>
               </thead>
               <tbody>
                 <Item
-                  v-for="subject in subjectsList"
-                  :key="subject.id"
-                  :subject="subject"
-                  v-on:delete-subject="onDelete"
+                  v-for="student in studentsList"
+                  :key="student.id"
+                  :student="student"
+                  v-on:delete-student="onDelete"
                 />
               </tbody>
             </table>
@@ -50,7 +47,7 @@
 import Item from "./Item";
 import Paging from "../share/Paging";
 import Search from "./Search";
-import SubjectsApi from "../../../api/subjects";
+import StudentsApi from "../../../api/students";
 
 export default {
   components: {
@@ -59,16 +56,16 @@ export default {
     Search
   },
   props: {
-    subjectTypeOption: {
+    classNameOption: {
       type: Array
     },
-    departmentOption: {
+    programOption: {
       type: Array
     }
   },
   data: function() {
     return {
-      subjectsList: [],
+      studentsList: [],
       page: 1,
       perPage: 50,
       meta: {},
@@ -77,10 +74,10 @@ export default {
     };
   },
   created: function() {
-    this.fetchSubjectsList();
+    this.fetchStudentsList();
   },
   methods: {
-    fetchSubjectsList: async function() {
+    fetchStudentsList: async function() {
       const params = {
         q: this.q,
         page: this.page,
@@ -89,8 +86,8 @@ export default {
       
       try {
         this.$root.$refs.loading.show();
-        const result = await SubjectsApi.getSubjectsList(params);
-        this.subjectsList = result.data.subjects;
+        const result = await StudentsApi.getStudentsList(params);
+        this.studentsList = result.data.students;
         this.meta = Object.assign({}, this.meta, result.data.meta);
         this.page = this.meta.page;
       } catch (e) {
@@ -101,14 +98,14 @@ export default {
     },
     onChangePage: function(page) {
       this.page = page;
-      this.fetchSubjectsList();
+      this.fetchStudentsList();
     },
     onSearch: async function(params) {
       this.q = params;
-      this.fetchSubjectsList();
+      this.fetchStudentsList();
     },
     onDelete: function() {
-      this.fetchSubjectsList();
+      this.fetchStudentsList();
     }
   }
 };

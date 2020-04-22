@@ -44,6 +44,9 @@ document.addEventListener('DOMContentLoaded', () => {
       SubjectsIndex: () => import('./components/subjects/Index'),
       SubjectsNewPage: () => import('./components/subjects/new'),
       SubjectsEditPage: () => import('./components/subjects/edit'),
+      StudentsIndex: () => import('./components/students/Index'),
+      StudentsNewPage: () => import('./components/students/new'),
+      StudentsEditPage: () => import('./components/students/edit'),
     }
   });
   
