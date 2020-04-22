@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card-header card-header-success">
-      <h4 class="card-title">Tìm kiếm môn </h4>
+      <h4 class="card-title">Tìm kiếm môn học</h4>
     </div>
     <div class="card-body">
       <form>
@@ -52,7 +52,7 @@
           </div>
         </div>
         <button class="btn btn-success" @click.prevent="onSearch()">Tìm kiếm</button>
-        <button class="btn btn-success" @click.prevent="onNewRoles()">Tạo mới môn học</button>
+        <button class="btn btn-success" @click.prevent="onNewSubjects()">Tạo mới môn học</button>
       </form>
     </div>
   </div>
@@ -83,7 +83,7 @@ export default {
     onSearch: function() {
       this.$emit("search-subjects", this.q);
     },
-    onNewRoles: function() {
+    onNewSubjects: function() {
       window.location.href = "/subjects/new";
     }
   }

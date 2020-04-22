@@ -50,6 +50,15 @@
           <p>Quản lý môn học</p>
         </a>
       </li>
+      <li class="nav-item
+                  <%= active_class('students', 'index') %>
+                  <%= active_class('students', 'edit') %>
+                  <%= active_class('students', 'new') %>">
+        <a class="nav-link" href="/students">
+          <i class="fas fa-user-friends"></i>
+          <p>Quản lý sinh viên</p>
+        </a>
+      </li>
       <!-- <li class="nav-item  <%#= active_class('users') %>">
         <a class="nav-link" href="/users">
           <i class="material-icons">person</i>
