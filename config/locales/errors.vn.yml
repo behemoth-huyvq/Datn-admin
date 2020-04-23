@@ -7,3 +7,4 @@ vn:
       too_short: phải nhiều hơn %{count} ký tự
       duplicate: đã bị trùng
       does_not_exist: không tồn tại
+      not_a_number: Phải là số

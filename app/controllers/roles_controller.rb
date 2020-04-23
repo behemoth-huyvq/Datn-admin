@@ -39,14 +39,14 @@ class RolesController < BaseController
   end
 
   def update
-      form = RoleValidator.new(OpenStruct.new(role_params))
+    form = RoleValidator.new(OpenStruct.new(role_params))
 
-      if form.valid?
-        @role.update(role_params)
-        render json: @role, status: :ok
-      else
-        render json: form.error_messages, status: :unprocessable_entity
-      end
+    if form.valid?
+      @role.update(role_params)
+      render json: @role, status: :ok
+    else
+      render json: form.error_messages, status: :unprocessable_entity
+    end
   end
 
   def destroy

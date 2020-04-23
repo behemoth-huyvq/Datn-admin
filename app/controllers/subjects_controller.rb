@@ -23,6 +23,25 @@ class SubjectsController < BaseController
     end
   end
 
+  def new
+    @subject = Subject.new
+  end
+
+  def create
+    form = SubjectValidator.new(OpenStruct.new(subject_params))
+
+    if form.valid?
+      @subject = Subject.new(subject_params)
+      @subject.subject_code = Subject.last.subject_code[..2] + (Subject.last.subject_code[3..].to_i + 1).to_s
+      byebug
+      @subject.save
+
+      render json: @subject, status: :ok
+    else
+      render json: form.error_messages, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @subject.destroy
     render json: { message: "Môn học đã bị xóa." }, status: :ok
@@ -31,11 +50,29 @@ class SubjectsController < BaseController
     render json: { message: "Xóa môn học thất bại. Vui lòng thử lại." }, status: :internal_server_error
   end
 
+  def update
+    form = SubjectValidator.new(OpenStruct.new(subject_params))
+
+    if form.valid?
+      @subject.update(subject_params)
+      render json: @subject, status: :ok
+    else
+      render json: form.error_messages, status: :unprocessable_entity
+    end
+  end
+
   def authorization
     authorize Subject
   end
 
   private
+
+  def subject_params
+    params.require(:subject).permit(
+      :subject_code, :subject_name, :subject_type,
+      :credit_value, :jhi_desc, :department, :status, :credit_value_number
+    )
+  end
 
   def fetch_subject
     @subject = Subject.find(params[:id])
