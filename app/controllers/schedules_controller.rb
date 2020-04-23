@@ -23,6 +23,34 @@ class SchedulesController < BaseController
     end
   end
 
+  def new
+    @schedule = Schedule.new
+  end
+
+  def create
+    form = ScheduleValidator.new(OpenStruct.new(schedule_params))
+
+    if form.valid?
+      @schedule = Schedule.new(schedule_params)
+      @schedule.save
+
+      render json: @schedule, status: :ok
+    else
+      render json: form.error_messages, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    form = ScheduleValidator.new(OpenStruct.new(schedule_params))
+
+    if form.valid?
+      @schedule.update(schedule_params)
+      render json: @schedule, status: :ok
+    else
+      render json: form.error_messages, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @schedule.destroy
     render json: { message: "Lịch học đã bị xóa." }, status: :ok
@@ -36,6 +64,13 @@ class SchedulesController < BaseController
   end
 
   private
+
+  def schedule_params
+    params.require(:schedule).permit(
+      :week_value, :week_day_value, :period_value,
+      :location, :course_id
+    )
+  end
 
   def fetch_schedule
     @schedule = Schedule.find(params[:id])
