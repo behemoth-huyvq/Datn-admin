@@ -23,6 +23,35 @@ class CoursesController < BaseController
     end
   end
 
+  def new
+    @course = Course.new
+  end
+
+  def create
+    form = CourseValidator.new(OpenStruct.new(course_params))
+
+    if form.valid?
+      @course = Course.new(course_params)
+      @course.course_code = Course.last.course_code[..3] + (Course.last.course_code[4..].to_i + 1).to_s
+      @course.save
+
+      render json: @course, status: :ok
+    else
+      render json: form.error_messages, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    form = CourseValidator.new(OpenStruct.new(course_params))
+
+    if form.valid?
+      @course.update(course_params)
+      render json: @course, status: :ok
+    else
+      render json: form.error_messages, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @course.destroy
     render json: { message: "Học phần đã bị xóa." }, status: :ok
@@ -36,6 +65,13 @@ class CoursesController < BaseController
   end
 
   private
+
+  def course_params
+    params.require(:course).permit(
+      :course_code, :max_slot, :status,
+      :subject_id, :current_slot
+    )
+  end
 
   def fetch_course
     @course = Course.find(params[:id])
