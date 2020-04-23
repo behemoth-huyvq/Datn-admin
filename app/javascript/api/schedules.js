@@ -15,14 +15,14 @@ export default {
 
     return Axios.delete(`/schedules/${schduleId}`, {});
   },
-  // createRole(role) {
-  //   return Axios.post(`/roles`, {
-  //     role: role
-  //   });
-  // },
-  // editRole(role) {
-  //   return Axios.put(`/roles/${role.id}`, {
-  //     role: role
-  //   });
-  // }
+  createSchedule(schedule) {
+    return Axios.post(`/schedules`, {
+      schedule: schedule
+    });
+  },
+  editSchedule(schedule) {
+    return Axios.put(`/schedules/${schedule.id}`, {
+      schedule: schedule
+    });
+  }
 }

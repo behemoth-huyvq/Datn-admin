@@ -7,17 +7,29 @@ module ScheduleHelper
     content_tag("schedules-index", nil, nil, false)
   end
 
-  # def roles_new_page(role)
-  #   inner_options = {
-  #     ":role": role.to_json
-  #   }
-  #   content_tag('roles-new-page', nil, inner_options, false)
-  # end
+  def schedules_new_page(schedule)
+    inner_options = {
+      ":schedule": schedule.to_json,
+      ':course-code-option': Course.all.map do |course|
+        {
+          value: course.id,
+          code: course.course_code,
+        }
+      end.to_json,
+    }
+    content_tag('schedules-new-page', nil, inner_options, false)
+  end
 
-  # def roles_edit_page(role)
-  #   inner_options = {
-  #     ":role": role.to_json,
-  #   }
-  #   content_tag('roles-edit-page', nil, inner_options, false)
-  # end
+  def schedules_edit_page(schedule)
+    inner_options = {
+      ":schedule": schedule.to_json,
+      ':course-code-option': Course.all.map do |course|
+        {
+          value: course.id,
+          code: course.course_code,
+        }
+      end.to_json,
+    }
+    content_tag('schedules-edit-page', nil, inner_options, false)
+  end
 end

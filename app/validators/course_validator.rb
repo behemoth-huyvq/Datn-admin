@@ -3,7 +3,7 @@ class CourseValidator
 
   attr_accessor :max_slot, :subject_id, :status, :current_slot
 
-  validates :max_slot, :current_slot, numericality: { only_integer: true }
+  validates :max_slot, :current_slot, :subject_id, numericality: { only_integer: true }
   validates :max_slot, :status, :subject_id, presence: true
 
   def initialize(attributes = {})

@@ -16,7 +16,7 @@
     </div>
 
     <div class="form-group row">
-      <label for="kind" class="col-sm-2 col-form-label">  Số lượng sinh viên giới hạn</label>
+      <label for="kind" class="col-sm-2 col-form-label">Số lượng sinh viên giới hạn</label>
       <div class="col-sm-10">
         <input
           type="text"
