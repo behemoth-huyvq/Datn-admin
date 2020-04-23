@@ -15,14 +15,14 @@ export default {
 
     return Axios.delete(`/courses/${courseId}`, {});
   },
-  // createRole(role) {
-  //   return Axios.post(`/roles`, {
-  //     role: role
-  //   });
-  // },
-  // editRole(role) {
-  //   return Axios.put(`/roles/${role.id}`, {
-  //     role: role
-  //   });
-  // }
+  createCourse(course) {
+    return Axios.post(`/courses`, {
+      course: course
+    });
+  },
+  editCourse(course) {
+    return Axios.put(`/courses/${course.id}`, {
+      course: course
+    });
+  }
 }
