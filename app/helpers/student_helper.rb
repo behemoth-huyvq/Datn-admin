@@ -7,17 +7,21 @@ module StudentHelper
     content_tag("students-index", nil, inner_options, false)
   end
 
-  # def roles_new_page(role)
-  #   inner_options = {
-  #     ":role": role.to_json
-  #   }
-  #   content_tag('roles-new-page', nil, inner_options, false)
-  # end
+  def students_new_page(student)
+    inner_options = {
+      ":student": student.to_json,
+      ":program-option": Student.pluck(:program).uniq.to_json,
+      ":class-name-option": Student.pluck(:class_name).uniq.to_json
+    }
+    content_tag('students-new-page', nil, inner_options, false)
+  end
 
-  # def roles_edit_page(role)
-  #   inner_options = {
-  #     ":role": role.to_json,
-  #   }
-  #   content_tag('roles-edit-page', nil, inner_options, false)
-  # end
+  def students_edit_page(student)
+    inner_options = {
+      ":student": student.to_json,
+      ":program-option": Student.pluck(:program).uniq.to_json,
+      ":class-name-option": Student.pluck(:class_name).uniq.to_json
+    }
+    content_tag('students-edit-page', nil, inner_options, false)
+  end
 end
