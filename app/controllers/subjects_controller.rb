@@ -33,7 +33,6 @@ class SubjectsController < BaseController
     if form.valid?
       @subject = Subject.new(subject_params)
       @subject.subject_code = Subject.last.subject_code[..2] + (Subject.last.subject_code[3..].to_i + 1).to_s
-      byebug
       @subject.save
 
       render json: @subject, status: :ok

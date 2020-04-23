@@ -23,6 +23,39 @@ class StudentsController < BaseController
     end
   end
 
+  def new
+    @student = Student.new
+  end
+
+  def create
+    form = StudentValidator.new(OpenStruct.new(student_params))
+
+    if form.valid?
+      @student = Student.new(student_params)
+      @student.student_code = Student.last.student_code[..3] + (Student.last.student_code[4..].to_i + 1).to_s
+      @student.save
+
+      render json: @student, status: :ok
+    else
+      render json: form.error_messages, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+    @student.dob = @student.dob.to_date
+  end
+
+  def update
+    form = StudentValidator.new(OpenStruct.new(student_params))
+
+    if form.valid?
+      @student.update(student_params)
+      render json: @student, status: :ok
+    else
+      render json: form.error_messages, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @student.destroy
     render json: { message: "Sinh viên đã bị xóa." }, status: :ok
@@ -36,6 +69,13 @@ class StudentsController < BaseController
   end
 
   private
+
+  def student_params
+    params.require(:student).permit(
+      :student_code, :name, :dob,
+      :class_name, :program
+    )
+  end
 
   def fetch_student
     @student = Student.find(params[:id])
